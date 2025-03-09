@@ -79,15 +79,15 @@ class Service extends Model
             $sid = "";
             $token = "";
             $twilio_number_sender_sms = "";
-            $client = new Client($sid, $token);
+            // $client = new Client($sid, $token);
 
-            $client->messages->create(
-                env('ADMIN_PHONE_NUMBER'),
-                [
-                    'from' => $twilio_number_sender_sms,
-                    'body' => 'You have a new service assigned for ' . $service->date . ' in ' . $service->community->community_name
-                ]
-            );
+            // $client->messages->create(
+            //     env('ADMIN_PHONE_NUMBER'),
+            //     [
+            //         'from' => $twilio_number_sender_sms,
+            //         'body' => 'You have a new service assigned for ' . $service->date . ' in ' . $service->community->community_name
+            //     ]
+            // );
         });
 
         static::updated(function ($service) {
@@ -99,41 +99,41 @@ class Service extends Model
             if ($service->wasChanged('status_id')) {
                 $sid = "";
                 $token = "";
-                $twilio = new Client($sid, $token);
+                // $twilio = new Client($sid, $token);
 
-                if ($status->status_name == 'Pending') {
-                    $message = $twilio->messages->create(
-                        $service->cleaner->phone_number,
-                        [
-                            'from' => '',
-                            'body' => 'You have a new service assigned for ' . $service->date . ' in ' . $service->community->community_name
-                        ]
-                    );
-                } elseif ($status->status_name == 'Approved') {
-                    $message = $twilio->messages->create(
-                        $manager->phone_number,
-                        [
-                            'from' => '',
-                            'body' => 'Your service for ' . $service->date . ' in ' . $service->community->community_name . ' has been accepted, and a cleaner has been assigned.'
-                        ]
-                    );
-                } elseif ($status->status_name == 'Finished') {
-                    $message = $twilio->messages->create(
-                        $manager->phone_number,
-                        [
-                            'from' => '',
-                            'body' => 'Your service for ' . $service->date . ' in ' . $service->community->community_name . ' has been finished.'
-                        ]
-                    );
-                } else {
-                    $message = $twilio->messages->create(
-                        env('ADMIN_PHONE_NUMBER'),
-                        [
-                            'from' => '',
-                            'body' => 'The service for ' . $service->date . ' in ' . $service->community->community_name . ' has been ' . $status->status_name
-                        ]
-                    );
-                }
+                // if ($status->status_name == 'Pending') {
+                //     $message = $twilio->messages->create(
+                //         $service->cleaner->phone_number,
+                //         [
+                //             'from' => '',
+                //             'body' => 'You have a new service assigned for ' . $service->date . ' in ' . $service->community->community_name
+                //         ]
+                //     );
+                // } elseif ($status->status_name == 'Approved') {
+                //     $message = $twilio->messages->create(
+                //         $manager->phone_number,
+                //         [
+                //             'from' => '',
+                //             'body' => 'Your service for ' . $service->date . ' in ' . $service->community->community_name . ' has been accepted, and a cleaner has been assigned.'
+                //         ]
+                //     );
+                // } elseif ($status->status_name == 'Finished') {
+                //     $message = $twilio->messages->create(
+                //         $manager->phone_number,
+                //         [
+                //             'from' => '',
+                //             'body' => 'Your service for ' . $service->date . ' in ' . $service->community->community_name . ' has been finished.'
+                //         ]
+                //     );
+                // } else {
+                //     $message = $twilio->messages->create(
+                //         env('ADMIN_PHONE_NUMBER'),
+                //         [
+                //             'from' => '',
+                //             'body' => 'The service for ' . $service->date . ' in ' . $service->community->community_name . ' has been ' . $status->status_name
+                //         ]
+                //     );
+                // }
             }
         });
     }
