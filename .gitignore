@@ -1,0 +1,4 @@
+.env
+volumes/database
+volumes/redis
+volumes/app
