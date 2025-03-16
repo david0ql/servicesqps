@@ -18,9 +18,8 @@ use App\Models\Cost;
 
 class ServiceReportWidget extends TableWidget
 {
-    protected static string $view = 'filament.widgets.service-report';
-
     protected int | string | array $columnSpan = 'full';
+
     protected function getTableQuery(): Builder
     {
         return Service::query()
