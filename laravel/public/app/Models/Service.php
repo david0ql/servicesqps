@@ -54,8 +54,9 @@ class Service extends Model
         }
 
         if ($user->hasRole('Manager')) {
+            var_dump($query);
             $communityIds = \App\Models\Community::where('manager_id', $user->id)->pluck('id');
-            return $query->whereIn('community_id', $communityIds);
+            return $query->whereIn('services.community_id', $communityIds);
         }
         return $query;
     }
