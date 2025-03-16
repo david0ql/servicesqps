@@ -13,4 +13,12 @@ class Dashboard extends BaseDashboard
             ServiceReportWidget::class,
         ];
     }
+
+    /**
+     * Hacemos que ocupe todo el ancho disponible.
+     */
+    public function getColumns(): int | string | array
+    {
+        return 1; // Cambiar de 2 a 1 para que los widgets usen todo el ancho
+    }
 }
