@@ -15,7 +15,7 @@ return [
     */
 
     'dashboards' => [
-        \App\Filament\Pages\Dashboard::class,
+        // \App\Filament\Pages\Dashboard::class,
     ],
 
     'broadcasting' => [
