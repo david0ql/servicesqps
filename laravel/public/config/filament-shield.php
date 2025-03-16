@@ -69,9 +69,9 @@ return [
             'Dashboard',
         ],
 
-        // 'widgets' => [
-        //     'AccountWidget', 'FilamentInfoWidget',
-        // ],
+        'widgets' => [
+            'AccountWidget', 'FilamentInfoWidget',
+        ],
 
         'resources' => [],
     ],
