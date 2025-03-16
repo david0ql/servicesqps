@@ -311,7 +311,7 @@ class ServiceReportWidget extends TableWidget
                         $services = Service::query()
                             ->leftJoin('statuses', 'services.status_id', '=', 'statuses.id')
                             ->with('type', 'cleaner')
-                            ->where('community_id', $community->id)
+                            ->where('services.community_id', $community->id)
                             ->when($dateFrom, function ($query) use ($dateFrom) {
                                 $query->whereDate('date', '>=', $dateFrom);
                             })
